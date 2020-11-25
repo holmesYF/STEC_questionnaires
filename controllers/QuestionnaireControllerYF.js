@@ -33,7 +33,7 @@ async function Distribution(QuestionnaireID) {
 }
 
 
-function TimeCheckdb(){
+async function TimeCheckdb(){
    await PG.CheckQuestionTimedb()
 }
 exports.Distribution = Distribution;
