@@ -7,7 +7,7 @@ const Users = require("../models/index.js").Users;
 const Grades = require("../models/index.js").Grades;
 const Target = require("../models/index.js").Target;
 const Questionnaires =require("../models/index.js").Questionnaires;
-const Questionnaire = require("./QuestionnaireController");
+const Questionnaire = require("./QuestionnaireControllerYF");
 const LineEvent = require("./LineEventController");//Lineのイベント対応用
 const line_config = {
   channelAccessToken: process.env.LINE_ACCESS_TOKEN, // 環境変数からアクセストークンをセットしています
@@ -129,7 +129,31 @@ function GetQuestiondb(questionnaireID){
         })
     })
 }
+function CheckQuestionTimedb(){
+    return Promise(resolve =>{
+        Questionnaires.findAll({
+            where: {
+                startAt: {
+                    [Sequelize.Op.lt]: "2018-12-10 11:40:00",
+                },
+                startAt: {
+                    [Sequelize.Op.gt]: "2030-12-10 11:20:00",
+                }
+            }
+        }).then(question =>{
+            let questionidlist = []
+            Object.keys(question).forEach(key =>{
+                questionidlist.push(question[key].dataValues.id)
+            })
+            resolve(questionidlist)
+        }).catch(e =>{
+            console.error("CheckQuestionTimedb error =>" + e)
+            resolve(null)
+        })
+    })
+}
 
+exports.CheckQuestionTimedb = CheckQuestionTimedb;
 exports.GetQuestiondb =GetQuestiondb;
 exports.FindTarget = FindTarget;
 exports.Finddb = Finddb;

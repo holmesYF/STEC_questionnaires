@@ -4,7 +4,7 @@ const Client = require("pg");
 //const { SET_DEFERRED } = require("sequelize/types/lib/deferrable");
 const Users = require('../models/index.js').Users;
 const Linebot = require("./LinbotController");
-const Questionnaire = require("./QuestionnaireController");
+const Questionnaire = require("./QuestionnaireControllerYF");
 
 //#region 友達登録時に送るFlexメッセージ
 const add_friend_message_male = {

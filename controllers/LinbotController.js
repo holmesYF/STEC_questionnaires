@@ -5,7 +5,7 @@ const Users = require("../models/index.js").Users;
 const LineEvent = require("./LineEventController");//Lineのイベント対応用
 const PG = require("./PGController");
 const awaitDelay = require("./awaitDelay");
-const Questionnaire = require("./QuestionnaireController");
+const Questionnaire = require("./QuestionnaireControllerYF");
 const line_config = {
   channelAccessToken: process.env.LINE_ACCESS_TOKEN, // 環境変数からアクセストークンをセットしています
   channelSecret: process.env.LINE_CHANNEL_SECRET // 環境変数からChannel Secretをセットしています
@@ -122,19 +122,21 @@ function SendMessage(ID, message) {
 };
 
 
-function linepost(req, res, next) {
-  const ID = "U005578f86340c26e627830d3eda9221c";
+async function linepost(req, res, next) {
+  console.log(await PG.CheckQuestionTimedb())
+  //const ID = "U005578f86340c26e627830d3eda9221c";
 
-  const message = {
-    type: 'text',
-    text: 'Hello World!'
-  };
-  console.log("this ver " + typeof this.SendMessage + "\n");
-  console.log("not this " + typeof SendMessage + "\n");
-  SendMessage(ID, message);
-  console.log(this)
-  res.send("test");
-  return 0;
+  // const message = {
+  //   type: 'text',
+  //   text: 'Hello World!'
+  // };
+  // console.log("this ver " + typeof this.SendMessage + "\n");
+  // console.log("not this " + typeof SendMessage + "\n");
+  // SendMessage(ID, message);
+  // console.log(this)
+  // res.send("test");
+  // return 0;
+
 };
 
 
