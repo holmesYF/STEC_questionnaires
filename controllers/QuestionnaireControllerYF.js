@@ -22,12 +22,18 @@ async function Distribution(QuestionnaireID) {
             }
         );
         if (userslist != false) {
+            // message = await PG.GetQuestiondb(QuestionnaireID)
+            
             userslist.forEach(lineid => {
-                message = await PG.GetQuestiondb(QuestionnaireID)
+                var message = "https//hogehoge/" + QuestionnaireID + "?id=" +  lineid
                 Linebot.SendMessage(lineid,message)
             });
         }
     }
 }
 
+
+function TimeCheckdb(){
+   await PG.CheckQuestionTimedb()
+}
 exports.Distribution = Distribution;
