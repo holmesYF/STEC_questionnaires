@@ -3,6 +3,7 @@ const line = require("@line/bot-sdk");
 const Client = require("pg");
 //const { SET_DEFERRED } = require("sequelize/types/lib/deferrable");
 const Users = require('../models/index.js').Users;
+const Questionnaires =require("../models/index.js").Questionnaires;
 const Linebot = require("./LinbotController");
 const Questionnaire = require("./QuestionnaireControllerYF");
 

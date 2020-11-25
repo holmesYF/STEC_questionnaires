@@ -2,6 +2,7 @@ const server = require("express")();
 const line = require("@line/bot-sdk"); // Messaging APIのSDKをインポート]
 const Client = require("pg");
 const Users = require("../models/index.js").Users;
+const Questionnaires =require("../models/index.js").Questionnaires;
 const LineEvent = require("./LineEventController");//Lineのイベント対応用
 const PG = require("./PGController");
 const awaitDelay = require("./awaitDelay");
