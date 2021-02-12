@@ -3,10 +3,11 @@ const line = require("@line/bot-sdk"); // Messaging APIのSDKをインポート
 const e = require("express");
 const Client = require("pg");
 //const  = require("sequelize/types/lib/operators");
-const Users = require("../models/index.js").Users;
-const Grades = require("../models/index.js").Grades;
+const Users = require("../models/index.js").User;
+const Grades = require("../models/index.js").Grade;
 const Target = require("../models/index.js").Target;
-const Questionnaires =require("../models/index.js").Questionnaires;
+const Questionnaires =require("../models/index.js").Questionnaire;
+const Sequelize = require("sequelize");
 const Questionnaire = require("./QuestionnaireControllerYF");
 const LineEvent = require("./LineEventController");//Lineのイベント対応用
 const line_config = {
@@ -79,13 +80,16 @@ function AddFriend(event,_sex,_grade) {
 function FindTarget(questionnaireID){
     return new Promise(resolve =>{
         targetlist = []
-        Target.FindAll({
+        Target.findAll({
             where:{
-                QuestionnaireID:questionnaireID
+                questionnaireID:questionnaireID
             }
         }).then(target =>{
+            console.log("target=>" + target)
             Object.keys(target).forEach(key=>{
-                targetlist.push(Target[key].dataValues.gradeID)
+                console.log("target[key]=>" + target[key])
+                console.log(Object.keys(target[key]));
+                targetlist.push(target[key].dataValues.gradeID)
             })
             resolve(targetlist)
         }).catch(e =>{
@@ -98,7 +102,7 @@ function FindTarget(questionnaireID){
 
 function Finddb(identity){
     return new Promise(resolve =>{
-        Users.FindAll({
+        Users.findAll({
             where:identity
         }).then(users =>{
             lineIDlist = []
@@ -115,7 +119,7 @@ function Finddb(identity){
 }
 
 function GetQuestiondb(questionnaireID){
-    return Promise(resolve =>{
+    return new Promise(resolve =>{
         Questionnaires.findOne({
             where:{
                 id:questionnaireID
@@ -130,14 +134,14 @@ function GetQuestiondb(questionnaireID){
     })
 }
 function CheckQuestionTimedb(){
-    return Promise(resolve =>{
+    return new Promise(resolve =>{
         Questionnaires.findAll({
             where: {
-                startAt: {
-                    [Sequelize.Op.lt]: "2018-12-10 11:40:00",
+                endDate: {
+                    [Sequelize.Op.gte]: Date.now,
                 },
-                startAt: {
-                    [Sequelize.Op.gt]: "2030-12-10 11:20:00",
+                startDate: {
+                    [Sequelize.Op.lte]: Date.now,
                 }
             }
         }).then(question =>{

@@ -2,7 +2,7 @@ const server = require("express")();
 const line = require("@line/bot-sdk");
 const Client = require("pg");
 //const { SET_DEFERRED } = require("sequelize/types/lib/deferrable");
-const Users = require('../models/index.js').Users;
+const Users = require('../models/index.js').User;
 const Linebot = require("./LinbotController");
 const Questionnaire = require("./QuestionnaireControllerYF");
 
@@ -32,7 +32,7 @@ const add_friend_message_male = {
         "action": {
           "type": "postback",
           "label": "大学1年生",
-          "data": "add B1 m",
+          "data": "add b1 m",
           "displayText": "大学1年生"
         }
       },
@@ -43,7 +43,7 @@ const add_friend_message_male = {
         "action": {
           "type": "postback",
           "label": "大学2年生",
-          "data": "add B2 m",
+          "data": "add b2 m",
           "displayText": "大学2年生"
         }
       },
@@ -52,7 +52,7 @@ const add_friend_message_male = {
         "action": {
           "type": "postback",
           "label": "大学3年生",
-          "data": "add B3 m",
+          "data": "add b3 m",
           "displayText": "大学3年生"
         }
       },
@@ -61,7 +61,7 @@ const add_friend_message_male = {
         "action": {
           "type": "postback",
           "label": "大学4年生",
-          "data": "add B4 m",
+          "data": "add b4 m",
           "displayText": "大学4年生"
         }
       },
@@ -70,7 +70,7 @@ const add_friend_message_male = {
         "action": {
           "type": "postback",
           "label": "大学院1年生",
-          "data": "add M1 m",
+          "data": "add m1 m",
           "displayText": "大学院1年生"
         }
       },
@@ -79,7 +79,7 @@ const add_friend_message_male = {
         "action": {
           "type": "postback",
           "label": "大学院2年生",
-          "data": "add M2 m",
+          "data": "add m2 m",
           "displayText": "大学院2年生"
         }
       },
@@ -116,7 +116,7 @@ const add_friend_message_female = {
         "action": {
           "type": "postback",
           "label": "大学1年生",
-          "data": "add B1 f",
+          "data": "add b1 f",
           "displayText": "大学1年生"
         }
       },
@@ -127,7 +127,7 @@ const add_friend_message_female = {
         "action": {
           "type": "postback",
           "label": "大学2年生",
-          "data": "add B2 f",
+          "data": "add b2 f",
           "displayText": "大学2年生"
         }
       },
@@ -136,7 +136,7 @@ const add_friend_message_female = {
         "action": {
           "type": "postback",
           "label": "大学3年生",
-          "data": "add B3 f",
+          "data": "add b3 f",
           "displayText": "大学3年生"
         }
       },
@@ -145,7 +145,7 @@ const add_friend_message_female = {
         "action": {
           "type": "postback",
           "label": "大学4年生",
-          "data": "add B4 f",
+          "data": "add b4 f",
           "displayText": "大学4年生"
         }
       },
@@ -154,7 +154,7 @@ const add_friend_message_female = {
         "action": {
           "type": "postback",
           "label": "大学院1年生",
-          "data": "add M1 f",
+          "data": "add m1 f",
           "displayText": "大学院1年生"
         }
       },
@@ -163,7 +163,7 @@ const add_friend_message_female = {
         "action": {
           "type": "postback",
           "label": "大学院2年生",
-          "data": "add M2 f",
+          "data": "add m2 f",
           "displayText": "大学院2年生"
         }
       },

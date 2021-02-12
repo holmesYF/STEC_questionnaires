@@ -1,0 +1,72 @@
+body {
+  padding: 0;
+  margin: 0;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+.topPage{
+  margin-bottom: 0;
+  background-color: #fff;
+  padding: 4rem 2rem;
+}
+
+.questionsArea{
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  align-items: center;
+  margin: 0 auto;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.addPage {
+  width: 100%;
+  max-width: 400px;
+  padding: 15px;
+  margin: auto;
+}
+
+.card{
+  position: relative;
+  max-width: 400px;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-bottom: 30px;
+}
+
+.formPage{
+  width: 100%;
+  max-width: 700px;
+  padding: 15px;
+  margin: auto;
+}
+
+.addButton{
+  margin-bottom: 30px;
+}
+
+.btn{
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-bottom: 5px
+}
+
+.form-check-label{
+  padding-left: 40px;
+}
+
+.top-search{
+  max-width: 250px;
+}
+
+.top-order{
+  max-width: 100px;
+}
+
+fieldset{
+  margin: 0px;
+  padding: 0px;
+}

@@ -1,10 +1,9 @@
 const server = require("express")();
 const line = require("@line/bot-sdk"); // Messaging APIのSDKをインポート]
 const Client = require("pg");
-const Users = require("../models/index.js").Users;
+const Users = require("../models/index.js").User;
 const LineEvent = require("./LineEventController");//Lineのイベント対応用
 const PG = require("./PGController");
-const awaitDelay = require("./awaitDelay");
 const Questionnaire = require("./QuestionnaireControllerYF");
 const line_config = {
   channelAccessToken: process.env.LINE_ACCESS_TOKEN, // 環境変数からアクセストークンをセットしています
@@ -123,7 +122,11 @@ function SendMessage(ID, message) {
 
 
 async function linepost(req, res, next) {
-  console.log(await PG.CheckQuestionTimedb())
+  list = []
+  list = await PG.CheckQuestionTimedb()
+  list.forEach(id =>{
+    Questionnaire.Distribution(id)
+  })
   //const ID = "U005578f86340c26e627830d3eda9221c";
 
   // const message = {
@@ -134,15 +137,23 @@ async function linepost(req, res, next) {
   // console.log("not this " + typeof SendMessage + "\n");
   // SendMessage(ID, message);
   // console.log(this)
-  // res.send("test");
+   res.send("test");
   // return 0;
 
 };
+
+function time(req,res,next){
+  Questionnaire.CheckQuestionTimedb();
+  res.writeHead(200, {'Content-Type': 'application/json; charset=utf-8'});
+  res.end(JSON.stringify({status: 'ok'}));
+  console.log("time per 20 minite")
+}
 
 
 
 exports.linebot = linebot;
 exports.SendMessage = SendMessage;
 exports.linepost = linepost;
+exports.time = time;
 
 // }
